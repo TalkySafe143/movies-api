@@ -1,6 +1,8 @@
 const express = require('express');
 const config = require('./config');
+
 const moviesAPIRouter = require('./routes/movies');
+const userMoviesAPI = require('./routes/userMovies');
 
 const middlewaresErrors = require('./utils/middlewares/errors');
 
@@ -11,6 +13,7 @@ const app = express();
 app.use(express.json());
 
 moviesAPIRouter(app);
+userMoviesAPI(app);
 
 app.use(notFound);
 
