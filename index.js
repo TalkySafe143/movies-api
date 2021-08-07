@@ -1,8 +1,10 @@
 const express = require('express');
 const config = require('./config');
+const helmet = require('helmet');
 
 const moviesAPIRouter = require('./routes/movies');
 const userMoviesAPI = require('./routes/userMovies');
+const authAPI = require('./routes/auth');
 
 const middlewaresErrors = require('./utils/middlewares/errors');
 
@@ -11,7 +13,9 @@ const notFound = require('./utils/middlewares/notFound');
 const app = express();
 
 app.use(express.json());
+app.use(helmet())
 
+authAPI(app);
 moviesAPIRouter(app);
 userMoviesAPI(app);
 
